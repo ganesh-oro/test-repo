@@ -1,1 +1,641 @@
-[]
+[
+    {
+        "id": "493fdbaedfa20f60",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e3e361b2a183d3c0",
+        "type": "mqtt-broker",
+        "name": "test-iot",
+        "broker": "s1c6dad1.ala.asia-southeast1.emqxsl.com",
+        "port": "8883",
+        "tls": "49dc872478b8af3a",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "5",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "hello/world",
+        "birthQos": "1",
+        "birthRetain": "true",
+        "birthPayload": "ONLINE",
+        "birthMsg": {},
+        "closeTopic": "hello/world",
+        "closeQos": "1",
+        "closeRetain": "true",
+        "closePayload": "OFFLINE",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "957bf75553f2329d",
+        "type": "ui_group",
+        "name": "Farm-1",
+        "tab": "b42588175e6acfe9",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "49dc872478b8af3a",
+        "type": "tls-config",
+        "name": "",
+        "cert": "",
+        "key": "",
+        "ca": "",
+        "certname": "",
+        "keyname": "",
+        "caname": "emqxsl-ca.crt",
+        "servername": "",
+        "verifyservercert": true,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "b42588175e6acfe9",
+        "type": "ui_tab",
+        "name": "Motor",
+        "icon": "",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "a03cf5efdc5caddf",
+        "type": "mqtt in",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/motor",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e3e361b2a183d3c0",
+        "nl": false,
+        "rap": true,
+        "rh": "1",
+        "inputs": 0,
+        "x": 310,
+        "y": 80,
+        "wires": [
+            [
+                "cdb65c965c8246ca"
+            ]
+        ]
+    },
+    {
+        "id": "bd2b589141243cd1",
+        "type": "mqtt out",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/motor",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e3e361b2a183d3c0",
+        "x": 520,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "cdb65c965c8246ca",
+        "type": "debug",
+        "z": "493fdbaedfa20f60",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "ec29149c483f59f5",
+        "type": "ui_switch",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "label": "motor",
+        "tooltip": "",
+        "group": "957bf75553f2329d",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 310,
+        "y": 160,
+        "wires": [
+            [
+                "bd2b589141243cd1"
+            ]
+        ]
+    },
+    {
+        "id": "c92977df489a84cd",
+        "type": "mqtt in",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/vitals",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e3e361b2a183d3c0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 190,
+        "y": 360,
+        "wires": [
+            [
+                "6d3266336b32d97d",
+                "e415b7c6f230bce8"
+            ]
+        ]
+    },
+    {
+        "id": "6d3266336b32d97d",
+        "type": "debug",
+        "z": "493fdbaedfa20f60",
+        "name": "debug 4",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "e415b7c6f230bce8",
+        "type": "function",
+        "z": "493fdbaedfa20f60",
+        "name": "Separate Responses",
+        "func": "var response = msg.payload;\nif (response=== 0) {\n    // Set total active energy to 0\n    msg.payload = \"Total active energy:\\nta: 0\";\n    return [null,null,null,null,null,msg];\n}\n\nvar values = response.split('_');\n\nvar type = values[0];\nvar r = values[1];\nvar y = values[2];\nvar b = values[3];\nvar t = values[4];\n\n// Prepare output based on response type\nif (type === 'vo') {\n    msg.payload = \"Voltage:\\nr: \" + r + \"\\ny: \" + y + \"\\nb: \" + b;\n    return [msg,null,null,null,null,null]\n} else if (type === 'cu') {\n    msg.payload = \"Current:\\nr: \" + r + \"\\ny: \" + y + \"\\nb: \" + b;\n    return [null,msg,null,null,null,null]\n}\n else if (type === 'ac') {\n    msg.payload = \"Active power:\\nr: \" + r + \"\\ny: \" + y + \"\\nb: \" + b + \"\\nt: \" + t;\n    return [null,null,msg,null,null,null]\n}\n else if (type === 'rp') {\n    msg.payload = \"Reactive power:\\nr: \" + r + \"\\ny: \" + y + \"\\nb: \" + b  + \"\\nt: \" + t;\n    return [null,null,null,msg,null,null]\n}\nelse if (type === 'pf') {\n    msg.payload = \"Power factor:\\nr: \" + r + \"\\ny: \" + y + \"\\nb: \" + b + \"\\nt: \" + t;\n    return [null,null,null,null,msg,null]\n}\nelse if (type === 'ta') {\n    msg.payload = \"Total active energy:\\nta: \"+ r\n    return [null,null,null,null,null,msg]\n}\n",
+        "outputs": 6,
+        "timeout": "",
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 380,
+        "wires": [
+            [
+                "3c2f3d33a0673124"
+            ],
+            [
+                "827f90624952b12e"
+            ],
+            [
+                "a0048686b5e3ca4b"
+            ],
+            [
+                "1aa859761656b458"
+            ],
+            [
+                "644899532decaf80"
+            ],
+            [
+                "4d7b9b200424306c"
+            ]
+        ]
+    },
+    {
+        "id": "3c2f3d33a0673124",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "Voltage Display",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": true,
+        "font": "Arial,Arial,Helvetica,sans-serif",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 740,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "827f90624952b12e",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Current Display",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 740,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "a0048686b5e3ca4b",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Active power",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 730,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "1aa859761656b458",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Reactive power",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 740,
+        "y": 420,
+        "wires": []
+    },
+    {
+        "id": "644899532decaf80",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Power factor",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 730,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "4d7b9b200424306c",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "Total active energy",
+        "label": "",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": "",
+        "color": "#000000",
+        "x": 750,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "09b1b3fdf52489ba",
+        "type": "mqtt in",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/AEReset",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e3e361b2a183d3c0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 960,
+        "wires": [
+            [
+                "0f207de2f99becb4",
+                "e415b7c6f230bce8"
+            ]
+        ]
+    },
+    {
+        "id": "d1d69ac28739b093",
+        "type": "mqtt out",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/AEReset",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e3e361b2a183d3c0",
+        "x": 490,
+        "y": 1040,
+        "wires": []
+    },
+    {
+        "id": "0f207de2f99becb4",
+        "type": "debug",
+        "z": "493fdbaedfa20f60",
+        "name": "debug 5",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 440,
+        "y": 960,
+        "wires": []
+    },
+    {
+        "id": "44b237a648175e26",
+        "type": "ui_button",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "group": "957bf75553f2329d",
+        "order": 7,
+        "width": 0,
+        "height": 0,
+        "passthru": false,
+        "label": "Reset total active energy ",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "className": "",
+        "icon": "",
+        "payload": "0",
+        "payloadType": "str",
+        "topic": "topic",
+        "topicType": "msg",
+        "x": 190,
+        "y": 1040,
+        "wires": [
+            [
+                "d1d69ac28739b093"
+            ]
+        ]
+    },
+    {
+        "id": "ed35410132063b0e",
+        "type": "mqtt out",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/vitals",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e3e361b2a183d3c0",
+        "x": 900,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "c448967d51726938",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Voltage",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "device1/vitals",
+        "payload": "vo_400.56_300.60_251.45",
+        "payloadType": "str",
+        "x": 470,
+        "y": 580,
+        "wires": [
+            [
+                "ed35410132063b0e"
+            ]
+        ]
+    },
+    {
+        "id": "7cc6eab07d887f15",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Current",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "device1/vitals",
+        "payload": "cu_40.56_30.16_25.45",
+        "payloadType": "str",
+        "x": 470,
+        "y": 640,
+        "wires": [
+            [
+                "ed35410132063b0e"
+            ]
+        ]
+    },
+    {
+        "id": "966623dc776b9ee8",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Active power",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "device1/vitals",
+        "payload": "ac_40.56_30.16_25.45_35.34",
+        "payloadType": "str",
+        "x": 490,
+        "y": 700,
+        "wires": [
+            [
+                "ed35410132063b0e"
+            ]
+        ]
+    },
+    {
+        "id": "627656cfd866d967",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Reactive power",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "device1/vitals",
+        "payload": "rp_40.56_30.16_25.45_20.95",
+        "payloadType": "str",
+        "x": 500,
+        "y": 760,
+        "wires": [
+            [
+                "ed35410132063b0e"
+            ]
+        ]
+    },
+    {
+        "id": "00342ed4eb39b4e1",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Power factor",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "device1/vitals",
+        "payload": "pf_40.56_30.16_25.45_25.12",
+        "payloadType": "str",
+        "x": 490,
+        "y": 820,
+        "wires": [
+            [
+                "ed35410132063b0e"
+            ]
+        ]
+    },
+    {
+        "id": "2841b92beb7ae190",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Total active energy",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "device1/vitals",
+        "payload": "ta_40",
+        "payloadType": "str",
+        "x": 510,
+        "y": 880,
+        "wires": [
+            [
+                "ed35410132063b0e"
+            ]
+        ]
+    }
+]
