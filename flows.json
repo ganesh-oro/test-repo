@@ -249,7 +249,7 @@
         "format": "{{msg.payload}}",
         "layout": "col-center",
         "className": "",
-        "style": true,
+        "style": false,
         "font": "Arial,Arial,Helvetica,sans-serif",
         "fontSize": "",
         "color": "#000000",
