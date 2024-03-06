@@ -81,7 +81,8 @@
                 "default": "#0094CE",
                 "baseColor": "#0094CE",
                 "baseFont": "-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen-Sans,Ubuntu,Cantarell,Helvetica Neue,sans-serif",
-                "edited": false
+                "edited": true,
+                "reset": false
             },
             "darkTheme": {
                 "default": "#097479",
@@ -169,6 +170,25 @@
         }
     },
     {
+        "id": "0a1ed5edf97851e7",
+        "type": "ui_tab",
+        "name": "Protection",
+        "icon": "",
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "3824fc065dc1af82",
+        "type": "ui_group",
+        "name": "Farm-1",
+        "tab": "0a1ed5edf97851e7",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
         "id": "a03cf5efdc5caddf",
         "type": "mqtt in",
         "z": "493fdbaedfa20f60",
@@ -250,7 +270,7 @@
         "offcolor": "",
         "animate": true,
         "className": "",
-        "x": 310,
+        "x": 250,
         "y": 160,
         "wires": [
             [
@@ -337,7 +357,7 @@
         "type": "ui_text",
         "z": "493fdbaedfa20f60",
         "group": "957bf75553f2329d",
-        "order": 1,
+        "order": 2,
         "width": 0,
         "height": 0,
         "name": "Voltage Display",
@@ -358,7 +378,7 @@
         "type": "ui_text",
         "z": "493fdbaedfa20f60",
         "group": "957bf75553f2329d",
-        "order": 2,
+        "order": 8,
         "width": 0,
         "height": 0,
         "name": "Current Display",
@@ -379,7 +399,7 @@
         "type": "ui_text",
         "z": "493fdbaedfa20f60",
         "group": "957bf75553f2329d",
-        "order": 2,
+        "order": 9,
         "width": 0,
         "height": 0,
         "name": "Active power",
@@ -400,7 +420,7 @@
         "type": "ui_text",
         "z": "493fdbaedfa20f60",
         "group": "957bf75553f2329d",
-        "order": 2,
+        "order": 10,
         "width": 0,
         "height": 0,
         "name": "Reactive power",
@@ -421,7 +441,7 @@
         "type": "ui_text",
         "z": "493fdbaedfa20f60",
         "group": "957bf75553f2329d",
-        "order": 2,
+        "order": 11,
         "width": 0,
         "height": 0,
         "name": "Power factor",
@@ -442,7 +462,7 @@
         "type": "ui_text",
         "z": "493fdbaedfa20f60",
         "group": "957bf75553f2329d",
-        "order": 2,
+        "order": 12,
         "width": 0,
         "height": 0,
         "name": "Total active energy",
@@ -520,7 +540,7 @@
         "z": "493fdbaedfa20f60",
         "name": "",
         "group": "957bf75553f2329d",
-        "order": 7,
+        "order": 13,
         "width": 0,
         "height": 0,
         "passthru": false,
@@ -731,6 +751,540 @@
         "wires": [
             [
                 "ed35410132063b0e"
+            ]
+        ]
+    },
+    {
+        "id": "2e38ede2a1c0a45e",
+        "type": "mqtt in",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/alerts",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e3e361b2a183d3c0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 1200,
+        "wires": [
+            [
+                "1f49a5c32acbe5a5"
+            ]
+        ]
+    },
+    {
+        "id": "8188bfd7134f0b1b",
+        "type": "mqtt out",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/alerts",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e3e361b2a183d3c0",
+        "x": 600,
+        "y": 1380,
+        "wires": []
+    },
+    {
+        "id": "d71ced86205d1f09",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Voltage alerts",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "v_1_0",
+        "payloadType": "str",
+        "x": 210,
+        "y": 1360,
+        "wires": [
+            [
+                "8188bfd7134f0b1b"
+            ]
+        ]
+    },
+    {
+        "id": "10a2d1e7fea897c3",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Current alerts",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "c_0_1",
+        "payloadType": "str",
+        "x": 210,
+        "y": 1420,
+        "wires": [
+            [
+                "8188bfd7134f0b1b"
+            ]
+        ]
+    },
+    {
+        "id": "bcd516756d60e227",
+        "type": "inject",
+        "z": "493fdbaedfa20f60",
+        "name": "Phase alerts",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "p_0_1",
+        "payloadType": "str",
+        "x": 210,
+        "y": 1480,
+        "wires": [
+            [
+                "8188bfd7134f0b1b"
+            ]
+        ]
+    },
+    {
+        "id": "e224d325b6c5233a",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 14,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Voltage alerts",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 740,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "1f49a5c32acbe5a5",
+        "type": "function",
+        "z": "493fdbaedfa20f60",
+        "name": "function 1",
+        "func": "var response = msg.payload;\n\n// Prepare output based on response type\nif (response== \"v_0_1\") {\n    msg.payload = \"High voltage\"\n    return [msg,null,null]\n} else if (response =='v_1_0') {\n    msg.payload = \"Low voltage\"\n    return [msg, null, null]\n}else if (response =='c_0_1') {\n    msg.payload = \"Dry run\"\n    return [null,msg, null]\n}else if (response =='c_1_0') {\n    msg.payload = \"Over load\"\n    return [null, msg, null]\n}else if (response =='p_0_1') {\n    msg.payload = \"Phase reversal\"\n    return [null, null, msg]\n}else if (response =='p_1_0') {\n    msg.payload = \"Phase absense\"\n    return [null, null, msg]\n}\n ",
+        "outputs": 3,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1200,
+        "wires": [
+            [
+                "e224d325b6c5233a"
+            ],
+            [
+                "75c7dad36277caeb"
+            ],
+            [
+                "4a4b3f4ca77eed6e"
+            ]
+        ]
+    },
+    {
+        "id": "75c7dad36277caeb",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 15,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Current alerts",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 740,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "4a4b3f4ca77eed6e",
+        "type": "ui_text",
+        "z": "493fdbaedfa20f60",
+        "group": "957bf75553f2329d",
+        "order": 16,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Phase alerts",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 730,
+        "y": 1280,
+        "wires": []
+    },
+    {
+        "id": "58514926b0a7e5ab",
+        "type": "mqtt in",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/protect",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "e3e361b2a183d3c0",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 240,
+        "y": 1620,
+        "wires": [
+            [
+                "9aa07f9f40ee9702"
+            ]
+        ]
+    },
+    {
+        "id": "65f9c0d338547fff",
+        "type": "mqtt out",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "topic": "device1/protect",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "e3e361b2a183d3c0",
+        "x": 780,
+        "y": 1800,
+        "wires": []
+    },
+    {
+        "id": "9aa07f9f40ee9702",
+        "type": "debug",
+        "z": "493fdbaedfa20f60",
+        "name": "debug 6",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 1560,
+        "wires": []
+    },
+    {
+        "id": "197e2e0e55287593",
+        "type": "ui_switch",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "label": "Under voltage protection",
+        "tooltip": "",
+        "group": "3824fc065dc1af82",
+        "order": 1,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "s1",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 210,
+        "y": 1780,
+        "wires": [
+            [
+                "49c03c31a1c99ac1"
+            ]
+        ]
+    },
+    {
+        "id": "6ac884e69001f96d",
+        "type": "ui_switch",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "label": "Over voltage protection",
+        "tooltip": "",
+        "group": "3824fc065dc1af82",
+        "order": 2,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "s2",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 210,
+        "y": 1820,
+        "wires": [
+            [
+                "49c03c31a1c99ac1"
+            ]
+        ]
+    },
+    {
+        "id": "78de394ab2de5898",
+        "type": "ui_switch",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "label": "Over load protection",
+        "tooltip": "",
+        "group": "3824fc065dc1af82",
+        "order": 4,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "s1",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 200,
+        "y": 1900,
+        "wires": [
+            [
+                "2e7aeed9ac30b422"
+            ]
+        ]
+    },
+    {
+        "id": "bb803f1970f4cf9a",
+        "type": "ui_switch",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "label": "Dry run protection",
+        "tooltip": "",
+        "group": "3824fc065dc1af82",
+        "order": 3,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "s2",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 190,
+        "y": 1940,
+        "wires": [
+            [
+                "2e7aeed9ac30b422"
+            ]
+        ]
+    },
+    {
+        "id": "6acedeb3f8d09b2c",
+        "type": "ui_switch",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "label": "Phase reversal Protection",
+        "tooltip": "",
+        "group": "3824fc065dc1af82",
+        "order": 5,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "s1",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 210,
+        "y": 2020,
+        "wires": [
+            [
+                "ab0365f2ace6d549"
+            ]
+        ]
+    },
+    {
+        "id": "5642c299751c0629",
+        "type": "ui_switch",
+        "z": "493fdbaedfa20f60",
+        "name": "",
+        "label": "Phase absense protection",
+        "tooltip": "",
+        "group": "3824fc065dc1af82",
+        "order": 6,
+        "width": 6,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "s2",
+        "topicType": "str",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": true,
+        "className": "",
+        "x": 210,
+        "y": 2060,
+        "wires": [
+            [
+                "ab0365f2ace6d549"
+            ]
+        ]
+    },
+    {
+        "id": "49c03c31a1c99ac1",
+        "type": "function",
+        "z": "493fdbaedfa20f60",
+        "name": "Function",
+        "func": "var switch1=context.get('switch1') || 0\nvar switch2 = context.get('switch2') || 0\n\nvar topic=msg.topic;\nif (topic==\"s1\")\n{\n    switch1=msg.payload;\n}\nif (topic==\"s2\")\n{\n    switch2=msg.payload;\n}\n\nif (switch1 && switch2)\n    msg.payload=\"v_1_1_140_340\";\nif (!switch1 && !switch2)\n    msg.payload=\"v_0_0\";\nif (switch1 && !switch2)\n    msg.payload=\"v_1_0_140\";\nif (!switch1 && switch2)\n    msg.payload=\"v_0_1_340\";\ncontext.set('switch1',switch1);\ncontext.set('switch2',switch2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 1800,
+        "wires": [
+            [
+                "65f9c0d338547fff"
+            ]
+        ]
+    },
+    {
+        "id": "2e7aeed9ac30b422",
+        "type": "function",
+        "z": "493fdbaedfa20f60",
+        "name": "Function",
+        "func": "var switch1=context.get('switch1') || 0\nvar switch2 = context.get('switch2') || 0\n\nvar topic=msg.topic;\nif (topic==\"s1\")\n{\n    switch1=msg.payload;\n}\nif (topic==\"s2\")\n{\n    switch2=msg.payload;\n}\n\nif (switch1 && switch2)\n    msg.payload=\"c_1_1_1.5_0.5\";\nif (!switch1 && !switch2)\n    msg.payload=\"c_0_0\";\nif (switch1 && !switch2)\n    msg.payload=\"c_1_0_1.5\";\nif (!switch1 && switch2)\n    msg.payload=\"c_0_1_0.5\";\ncontext.set('switch1',switch1);\ncontext.set('switch2',switch2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 460,
+        "y": 1900,
+        "wires": [
+            [
+                "65f9c0d338547fff"
+            ]
+        ]
+    },
+    {
+        "id": "ab0365f2ace6d549",
+        "type": "function",
+        "z": "493fdbaedfa20f60",
+        "name": "Function",
+        "func": "var switch1=context.get('switch1') || 0\nvar switch2 = context.get('switch2') || 0\n\nvar topic=msg.topic;\nif (topic==\"s1\")\n{\n    switch1=msg.payload;\n}\nif (topic==\"s2\")\n{\n    switch2=msg.payload;\n}\n\nif (switch1 && switch2)\n    msg.payload=\"p_1_1\";\nif (!switch1 && !switch2)\n    msg.payload=\"p_0_0\";\nif (switch1 && !switch2)\n    msg.payload=\"p_1_0\";\nif (!switch1 && switch2)\n    msg.payload=\"p_0_1\";\ncontext.set('switch1',switch1);\ncontext.set('switch2',switch2);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 2020,
+        "wires": [
+            [
+                "65f9c0d338547fff"
             ]
         ]
     }
