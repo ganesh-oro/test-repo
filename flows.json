@@ -906,7 +906,7 @@
         "type": "function",
         "z": "493fdbaedfa20f60",
         "name": "function 1",
-        "func": "var response = msg.payload;\n\n// Prepare output based on response type\nif (response== \"v_0_1\") {\n    msg.payload = \"High voltage\"\n    return [msg,null,null]\n} else if (response =='v_1_0') {\n    msg.payload = \"Low voltage\"\n    return [msg, null, null]\n}else if (response =='c_0_1') {\n    msg.payload = \"Dry run\"\n    return [null,msg, null]\n}else if (response =='c_1_0') {\n    msg.payload = \"Over load\"\n    return [null, msg, null]\n}else if (response =='p_0_1') {\n    msg.payload = \"Phase reversal\"\n    return [null, null, msg]\n}else if (response =='p_1_0') {\n    msg.payload = \"Phase absense\"\n    return [null, null, msg]\n}\n ",
+        "func": "var response = msg.payload;\n\n// Prepare output based on response type\nif (response== \"v_0_1\") {\n    msg.payload = \"Over voltage\"\n    return [msg,null,null]\n} else if (response =='v_1_0') {\n    msg.payload = \"Under voltage\"\n    return [msg, null, null]\n}else if (response =='c_0_1') {\n    msg.payload = \"Dry run\"\n    return [null,msg, null]\n}else if (response =='c_1_0') {\n    msg.payload = \"Over load\"\n    return [null, msg, null]\n}else if (response =='p_0_1') {\n    msg.payload = \"Phase absense\"\n    return [null, null, msg]\n}else if (response =='p_1_0') {\n    msg.payload = \"Phase reversal\"\n    return [null, null, msg]\n}\n ",
         "outputs": 3,
         "timeout": 0,
         "noerr": 0,
